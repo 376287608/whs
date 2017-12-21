@@ -1,0 +1,7 @@
+19:37:24.646 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7c101ac: startup date [Mon Dec 04 19:37:24 CST 2017]; root of context hierarchy
+19:37:24.810 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+19:37:26.998 [main] INFO  o.s.c.s.PropertySourcesPlaceholderConfigurer - Loading properties file from URL [file:/E:/svn/whs/target/classes/application.properties]
+19:37:28.259 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+19:37:33.225 [main] INFO  o.s.c.s.ClassPathXmlApplicationContext - Closing org.springframework.context.support.ClassPathXmlApplicationContext@7c101ac: startup date [Mon Dec 04 19:37:24 CST 2017]; root of context hierarchy
+19:37:33.274 [main] DEBUG c.u.w.c.utils.SpringContextHolder - 清除SpringContextHolder中的ApplicationContext:org.springframework.context.support.ClassPathXmlApplicationContext@7c101ac: startup date [Mon Dec 04 19:37:24 CST 2017]; root of context hierarchy
+19:37:33.274 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
