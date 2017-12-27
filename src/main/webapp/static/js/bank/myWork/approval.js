@@ -7,7 +7,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 	$ = layui.jquery;
 	layer = layui.layer;
 	form=layui.form;
-
+	var businessId = layui.data('business').businessId; 
 	var upload = layui.upload;
 	var laydate = layui.laydate;
 	//上一个地址
