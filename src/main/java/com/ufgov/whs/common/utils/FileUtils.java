@@ -420,4 +420,21 @@ public class FileUtils {
         }  
         return rootPath;  
         }  
+    
+    public static String getRootPath(String path) {  
+        String rootPath = "";  
+        //windows下  
+        if("\\".equals(File.separator)){  
+            System.out.println("windows");  
+        rootPath = classPath.substring(1,classPath.indexOf("/"+path+"/WEB-INF/classes"));  
+        rootPath = rootPath.replace("/", "\\");  
+        }  
+        //linux下  
+        if("/".equals(File.separator)){  
+            System.out.println("linux");  
+        rootPath = classPath.substring(0,classPath.indexOf("/"+path+"/WEB-INF/classes"));  
+        rootPath = rootPath.replace("\\", "/");  
+        }  
+        return rootPath;  
+        }  
 }

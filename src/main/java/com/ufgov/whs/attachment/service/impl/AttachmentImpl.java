@@ -32,6 +32,7 @@ import com.ufgov.whs.attachment.service.IAttachmentParamService;
 import com.ufgov.whs.attachment.service.IAttachmentService;
 import com.ufgov.whs.attachment.service.IDocAddrInfoService;
 import com.ufgov.whs.attachment.service.IHasDocService;
+import com.ufgov.whs.common.utils.ConfigReader;
 import com.ufgov.whs.common.utils.DateUtils;
 import com.ufgov.whs.common.utils.FileUtils;
 import com.ufgov.whs.common.utils.UUIDUtil;
@@ -289,10 +290,11 @@ public class AttachmentImpl implements IAttachmentService {
 				+ "static" + File.separator + "annoTemp" + File.separator + nowStr + File.separator;
 		//delDir: WebRoot/static/annoTemp/{#nowStr}/
 		FileUtils.generateDir(delDir, true);
+		String path = ConfigReader.getIns().getProperties("appName");
 		if (hd != null) {
 			FileUtils.getRemoteFilesToLocal(
 					//ExportImportServiceImpl.getSharedFolderPath(dai) + hd.getSaveAddr() + hd.getDocName(),
-					FileUtils.getRootPath()+File.separator+ hd.getSaveAddr() + hd.getDocName(),
+					FileUtils.getRootPath(path)+File.separator+ hd.getSaveAddr() + hd.getDocName(),
 					delDir + hd.getDocSrcName());
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("fileName", hd.getDocSrcName());
@@ -305,6 +307,7 @@ public class AttachmentImpl implements IAttachmentService {
 
 	@Override
 	public void savePdfToRemote(String timeStr, String docId) {
+		String path = ConfigReader.getIns().getProperties("appName");
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		String delDir = t.substring(0, t.indexOf("WEB-INF")) 
 				+ "static" + File.separator + "annoTemp" + File.separator + timeStr + File.separator;
@@ -343,7 +346,7 @@ public class AttachmentImpl implements IAttachmentService {
 		}
 		DocAddrInfo dai = this.iDocAddrInfoService.queryById(SysConstant.LOGICADDR);
 		FileUtils.pushLocalFileToRemote(
-				FileUtils.getRootPath()+File.separator + hd.getSaveAddr() + hd.getDocName(), 
+				FileUtils.getRootPath(path)+File.separator + hd.getSaveAddr() + hd.getDocName(), 
 				pdf.getAbsolutePath());
 		this.iHasDocService.saveHasDoc(hd);
 		this.reportAttachmentService.save(ra);

@@ -47,7 +47,7 @@ public interface FormAttachmentDao extends PagingAndSortingRepository<FormAttach
 	@Query("select f from FormAttachment f where f.docId = ?1")
 	FormAttachment getFormAttachmentByDocId(String docId);
 	
-	@Query("select f from FormAttachment f where f.formId = ?1 and f.statu = ?2  and f.scene =?3 and f.delFlag = '1' ")
+	@Query("select f from FormAttachment f where f.formId = ?1 and f.statu = ?2  and f.scene =?3 and f.delFlag = '1' order by displayOrder")
 	List<FormAttachment> getFormAttachmentByFormIdAndStatuAndScene(String formId,String statu,int scene);
 	
 	@Query(value = "select * from form_attachment where form_id = ?1 and other_flag = ?2 limit 1 ", nativeQuery = true)

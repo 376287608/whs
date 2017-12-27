@@ -33,6 +33,7 @@ import com.ufgov.whs.attachment.dao.DocAddrInfoDao;
 import com.ufgov.whs.attachment.dao.HasDocDao;
 import com.ufgov.whs.attachment.service.IExportImportService;
 import com.ufgov.whs.common.dao.PublicDao;
+import com.ufgov.whs.common.utils.ConfigReader;
 import com.ufgov.whs.common.utils.FileUtils;
 import com.ufgov.whs.common.utils.SerializeUtils;
 import com.ufgov.whs.common.utils.SqlUtils;
@@ -70,6 +71,7 @@ public class ExportImportServiceImpl implements IExportImportService {
 				OutputStream out = null;
 				//String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 				String t = FileUtils.getRootPath();
+				String tpath = ConfigReader.getIns().getProperties("appName");
 				//String delDir = t.substring(0, t.indexOf("WEB-INF")) 
 				//		+ "static" + File.separator + "zTemp" + File.separator;
 				String delDir = t + File.separator  + "static" + File.separator + "zTemp" + File.separator;
@@ -163,7 +165,7 @@ public class ExportImportServiceImpl implements IExportImportService {
 								if (fFullName.contains(hd.getDocName()) 
 										&& inSameDir(fFullName, hd.getSaveAddr())) {									
 									FileUtils.pushLocalFileToRemote(
-											FileUtils.getRootPath()+File.separator + fFullName.substring(
+											FileUtils.getRootPath(tpath)+File.separator + fFullName.substring(
 													fFullName.indexOf("attachment") + 11, fFullName.length()), 
 											fFullName);
 								}
@@ -306,6 +308,7 @@ public class ExportImportServiceImpl implements IExportImportService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		String nowStr = sdf.format(new Date());
 		//String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+		String tpath = ConfigReader.getIns().getProperties("appName");
 		String t = FileUtils.getRootPath();
 		//String delDir = t.substring(0, t.indexOf("WEB-INF")) 
 		//		+ "static" + File.separator + "temp" + File.separator;
@@ -329,7 +332,7 @@ public class ExportImportServiceImpl implements IExportImportService {
 				for (HasDoc hd : lhd) {					
 					FileUtils.getRemoteFilesToLocal(
 							//getSharedFolderPath(dai) + hd.getSaveAddr() + hd.getDocName(), 
-							FileUtils.getRootPath()+File.separator+ hd.getSaveAddr() + hd.getDocName(),
+							FileUtils.getRootPath(tpath)+File.separator+ hd.getSaveAddr() + hd.getDocName(),
 							pt + "attachment" + File.separator + hd.getSaveAddr() + hd.getDocName());
 				}
 		}

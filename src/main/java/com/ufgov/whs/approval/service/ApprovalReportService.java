@@ -57,6 +57,7 @@ import com.ufgov.whs.businesslog.bean.BusinessLog;
 import com.ufgov.whs.businesslog.service.BusinessLogService;
 import com.ufgov.whs.common.mapper.BeanMapper;
 import com.ufgov.whs.common.pagination.impl.IPaginationImpl;
+import com.ufgov.whs.common.utils.ConfigReader;
 import com.ufgov.whs.common.utils.DateUtils;
 import com.ufgov.whs.common.utils.FileUtils;
 import com.ufgov.whs.common.utils.PageAndWaterMarkUtils;
@@ -975,6 +976,7 @@ public class ApprovalReportService{
 	public String addPWToFinish(String formId){
 	    String message = "";
 	    ApprovalForm af = approvalFormDao.findOne(formId);
+	    String path = ConfigReader.getIns().getProperties("appName");
 	    //1.获取附件加水印
 	    List<FormAttachment> falist = formAttachmentDao.getFormAttachmentByFormIdAndStatuAndScene(formId,"3",0);
 	    List<HasDoc> docs = null;
@@ -1035,7 +1037,7 @@ public class ApprovalReportService{
 				   fa.setDelFlag(srcfa.getDelFlag());
 				   DocAddrInfo dai = docAddrInfoDao.findOne(SysConstant.LOGICADDR);
 				   FileUtils.pushLocalFileToRemote(
-						   FileUtils.getRootPath()+File.separator + hd.getSaveAddr() + hd.getDocName(), 
+						   FileUtils.getRootPath(path)+File.separator + hd.getSaveAddr() + hd.getDocName(), 
 							pdf.getAbsolutePath());
 				   iHasDocService.saveHasDoc(hd);
 				   ReportAttachment ra = BeanMapper.map(fa, ReportAttachment.class);
@@ -1325,13 +1327,14 @@ public class ApprovalReportService{
 		//第二步，获取相关附件到本地，位置：WebRoot/static/water/{#nowStr}/attachment/		
 		DocAddrInfo dai = docAddrInfoDao.findOne(SysConstant.LOGICADDR);
 		Map<String,String> inputFiles = new HashMap<String,String>();
+		String path = ConfigReader.getIns().getProperties("appName");
 		//if (dai != null) {
 			for (HasDoc hd : docs) {
 				String file = t + "attachment" + File.separator + hd.getSaveAddr() + hd.getDocName()+".pdf";
 				inputFiles.put(hd.getId(),file);
 				FileUtils.getRemoteFilesToLocal(
 						//ExportImportServiceImpl.getSharedFolderPath(dai) + hd.getSaveAddr() + hd.getDocName(), 
-						FileUtils.getRootPath()+File.separator+ hd.getSaveAddr() + hd.getDocName(),
+						FileUtils.getRootPath(path)+File.separator+ hd.getSaveAddr() + hd.getDocName(),
 						file);
 			}
 		//}

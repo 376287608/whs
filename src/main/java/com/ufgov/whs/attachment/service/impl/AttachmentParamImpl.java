@@ -39,7 +39,8 @@ public class AttachmentParamImpl implements IAttachmentParamService{
 			//DocAddrInfo docAddr = iDocAddrInfoService.queryById(logicAddr);
 			
 			//String sharedFolderPath = this.getSharedFolderPath(docAddr);
-			String sharedFolderPath = FileUtils.getRootPath();
+			String path = ConfigReader.getIns().getProperties("appName");
+			String sharedFolderPath = FileUtils.getRootPath(path);
 			//2.存储文件的父目录
 			//String parentDirectory = this.getParentDirectory(LoginUserService.getLoginCustomcode());
 //			String parentDirectory = this.getParentDirectory(SysConstant.FILE_FILE);
@@ -76,7 +77,8 @@ public class AttachmentParamImpl implements IAttachmentParamService{
 			//DocAddrInfo docAddr = iDocAddrInfoService.queryById(logicAddr);
 			
 			//String sharedFolderPath = this.getSharedFolderPath(docAddr);
-			String sharedFolderPath = FileUtils.getRootPath();
+			String path = ConfigReader.getIns().getProperties("appName");
+			String sharedFolderPath = FileUtils.getRootPath(path);
 			//2.存储文件的父目录
 			//String parentDirectory = this.getParentDirectory(LoginUserService.getLoginCustomcode());
 			String parentDirectory = this.getParentDirectory(directory);
