@@ -148,7 +148,7 @@
 							</p>
 							<div class="btn-group fr">
 								<a href='${ctx}/attachment/down/{{item.docId}}/1' class="layui-btn layui-btn-xs checkBtn">
-									<i class="layui-icon">&#xe64a;</i>查看附件
+									<i class="layui-icon"></i>查看附件
 								</a>
 							</div></li>
 						{{#}); }}						

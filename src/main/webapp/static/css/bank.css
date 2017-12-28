@@ -279,6 +279,43 @@ canvas {
 .layui-layout-admin .layui-footer{
 	z-index:999;
 }
+#uploadAttachmentListCon .layui-badge-dot{
+	width:16px;
+	height:16px;
+	vertical-align:middle;
+}
+.layui-input-block .layui-bg-blue,
+ #uploadAttachmentListCon .layui-bg-blue{
+	/* 待提交附件	 */
+	background:#1E9FFF url("../images/btn-wait.png") center no-repeat !important;
+	background-size:100%;	
+}
+.layui-input-block .layui-bg-green,
+#attachmentListCon .layui-bg-green,
+#uploadAttachmentListCon .layui-bg-green{
+	/* 审核通过附件	 */
+	background:url("../images/btn-pass.png") center no-repeat;	
+	background-size:100%;	
+}
+.layui-input-block .layui-bg-red,
+#attachmentListCon .layui-bg-red,
+#uploadAttachmentListCon .layui-bg-red{
+	/* 审核不通过附件	 */
+	background:#FF5722 url("../images/btn-nopass.png") center no-repeat;	
+	background-size:90%;	
+}
+.layui-input-block .layui-bg-orange,
+#attachmentListCon .layui-bg-orange,
+#uploadAttachmentListCon .layui-bg-orange{
+	/* 必传附件	 */
+	background:#FF5722 url("../images/btn-must.png") center no-repeat;	
+	background-size:100%;	
+}
+#uploadAttachmentListCon .layui-bg-danger{
+	/* 审核不通过附件	 */
+	background:#FF5722 url("../images/btn-edit.png") center no-repeat;	
+	background-size:75%;	
+}
 /*IE8 ���� 
 \0 IE8,IE9,IE10 ֧��
 \9\0 IE9,IE10 ֧��
@@ -287,3 +324,4 @@ canvas {
 .layui-nav .layui-nav-item{
 	margin-right:10px\0;
 }
+

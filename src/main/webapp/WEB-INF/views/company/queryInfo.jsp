@@ -122,12 +122,12 @@
 				</div>
 			</div>
 			<div class="layui-row mt30">
-				<div class="layui-col-sm12">
+				<div class="layui-col-sm12" id="uploadAttachmentListCon">
 					<h3 class="f18 ib layui-blue">附件上传</h3>
 					<p class="ib gray">
-						（<span class="layui-badge-dot layui-bg-danger mr5"></span>为必传项
+						（<span class="layui-badge-dot layui-bg-orange mr5"></span>为必传项
 						<span class="layui-badge-dot layui-bg-blue mr5"></span>为已传项
-						<span class="layui-badge-dot layui-bg-orange mr5"></span>为审核未通过项
+						<span class="layui-badge-dot layui-bg-red mr5"></span>为审核未通过项
 						<span class="layui-badge-dot layui-bg-green mr5"></span>为审核通过项 						
 						）
 					</p>
@@ -142,7 +142,7 @@
 						{{#  layui.each(d, function(index, item){ }}
 								{{# if(item.otherFlag!=null){ }}
 									{{# var other='otherAttachement';}}
-									{{# var delBtn='<button type="button"class="layui-btn layui-btn-danger layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon">&#xe640;</i>删除附件</button>'}}
+									{{# var delBtn='<button type="button"class="layui-btn layui-btn-orange layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon"></i>删除附件</button>'}}
 								{{# }else{ }}
 									{{# var other=''; }}
 									{{# var delBtn='';}}
@@ -150,18 +150,18 @@
 									
     							<li class="clearfix cl mb10 {{other}}" data-checktype="{{item.checkType}}" data-id="{{item.docType}}" data-otherFlag="{{item.otherFlag}}" data-attachmentid="{{item.docId}}"><p class="fl layui-elip" style="width:70%">
 								{{# if(item.docId==''||item.docId==null){ }}
-									<span class="layui-badge-dot layui-bg-danger mr5"></span>
+									<span class="layui-badge-dot layui-bg-orange mr5"></span>
 									<em class="fn">{{item.displayOrder}}</em>.<em class="fileName fn">{{item.filetypeName}}</em></p>
 								<div class="btn-group fr">
 									<a href="" class="layui-btn layui-btn-xs checkBtn none">
-										<i class="layui-icon">&#xe64a;</i>查看附件
+										<i class="layui-icon"></i>查看附件
 									</a>	
 																					
 								{{# }else{ }}
 									{{# if(item.statu=="1"){ }}		
 										<span class="layui-badge-dot layui-bg-blue mr5"></span>
 									{{# }else if(item.statu=="2"){ }}				
-										<span class="layui-badge-dot layui-bg-orange mr5"></span>
+										<span class="layui-badge-dot layui-bg-red mr5"></span>
 									{{# }else{ }}
 										<span class="layui-badge-dot layui-bg-green mr5"></span>
 									{{# } }}
@@ -171,14 +171,14 @@
 									{{delBtn}}
 								{{#	} }}
 								<a href="../attachment/down/{{item.docId}}/1" class="layui-btn layui-btn-xs checkBtn">
-									<i class="layui-icon">&#xe64a;</i>查看附件
+									<i class="layui-icon"></i>查看附件
 								</a>
 	
 								{{# } }}	
 								{{# if(item.statu!="3"){ }}
 								<button type="button"
 									class="layui-btn layui-btn-normal layui-btn-xs pr">
-									<i class="layui-icon">&#xe67c;</i>上传附件
+									<i class="layui-icon"></i>上传附件
 									<input type="file" name="file" class="upload-file pa" id="File{{item.id}}" onchange=ajaxFileUpload("File{{item.id}}","{{item.otherFlag}}")>									
 								</button>	
 								{{#}}}

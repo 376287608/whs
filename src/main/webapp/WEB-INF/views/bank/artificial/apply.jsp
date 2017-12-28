@@ -172,9 +172,9 @@
 				</div>
 			</div>
 			<div class="layui-row mt30">
-				<div class="layui-col-sm12">
+				<div class="layui-col-sm12" id="uploadAttachmentListCon">
 					<h3 class="f18 ib layui-blue">附件上传</h3>
-					<p class="ib gray">（<span class="layui-badge-dot layui-bg-danger mr5"></span>为必传项  <span class="layui-badge-dot layui-bg-blue mr5"></span>为已传项）</p>					
+					<p class="ib gray">（<span class="layui-badge-dot layui-bg-orange mr5"></span>为必传项  <span class="layui-badge-dot layui-bg-blue mr5"></span>为已传项）</p>					
 					<p class="ib fr"  id="addAttachment" onclick="addAttachment()">
 						<i class="layui-icon vm" style="font-size: 26px;">&#xe61f;</i> <span>添加其他附件</span> <span
 							class="f12 gray mt5">（最多上传十个其他附件）</span>
@@ -193,10 +193,10 @@
 							</p>
 							<div class="btn-group fr">
 								<a href="" class="layui-btn layui-btn-xs checkBtn none">
-									<i class="layui-icon">&#xe64a;</i>查看附件
+									<i class="layui-icon"></i>查看附件
 								</a>
 								<div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr">
-									<i class="layui-icon">&#xe67c;</i>上传附件
+									<i class="layui-icon"></i>上传附件
 									<input type="file" name="file" class="upload-file pa" id="File{{item.filetypeIndex}}" onchange=ajaxFileUpload("File{{item.filetypeIndex}}",'')>
 								</div>
 							</div></li>

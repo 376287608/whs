@@ -413,7 +413,7 @@ ajaxFileUpload = function(feid, sum) {
 }
 function fileCheck(feid) { // 自己添加的文件后缀名的验证
 	var file = document.getElementById(feid);
-	return /.(pdf)$/.test($('#'+feid).val()) ? true : (function() {
+	return /.(pdf|PDF)$/.test($('#'+feid).val()) ? true : (function() {
 		layer.msg('仅支持.pdf格式的文件', {
 			icon : 5,
 			anim : 6,
@@ -438,9 +438,9 @@ addAttachment = function() {
 		htmls += '<li class="clearfix cl mb10 otherAttachement">'
 		htmls += '<p class="fl layui-elip" style="width:70%"><span class="layui-badge-dot layui-bg-white mr5"></span><em class="fn">'+baseLen+'</em>.<em class="fileName fn">其他附件</em></p>';
 		htmls += '<div class="btn-group fr">';
-		htmls += ' <button type="button"class="layui-btn layui-btn-danger layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon">&#xe640;</i>删除附件</button>';
-		htmls += ' <a href="" class="layui-btn layui-btn-xs checkBtn none"><i class="layui-icon">&#xe64a;</i>查看附件</a>';
-		htmls += ' <div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr"><i class="layui-icon">&#xe67c;</i>上传附件<input type="file" name="file" class="upload-file pa" id="otherFile'
+		htmls += ' <button type="button"class="layui-btn layui-btn-danger layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon"></i>删除附件</button>';
+		htmls += ' <a href="" class="layui-btn layui-btn-xs checkBtn none"><i class="layui-icon"></i>查看附件</a>';
+		htmls += ' <div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr"><i class="layui-icon"></i>上传附件<input type="file" name="file" class="upload-file pa" id="otherFile'
 				+ uuids
 				+ '" onchange=ajaxFileUpload("otherFile'
 				+ uuids

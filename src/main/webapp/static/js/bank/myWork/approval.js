@@ -103,16 +103,20 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 		laytpl(getTpl).render(data, function(html) {
 			view.innerHTML = html;
 		});
-		if(Type=="待审批"){
+		if(Type=="待审批"||Type=="待接收"){
 			$(".addAnnotationBtn").removeClass("none");	
+		
 		}else if(Type=="待接收"){
-			$(".passBtn,.noPassBtn,.addAnnotationBtn").removeClass("none");
+		
+			$(".addAnnotationBtn").removeClass("none");
 		}else if(Type=="导入"||Type=="人工录入"){
-			$(".noPassBtn,.addAnnotationBtn").removeClass("none");
+			$(".addAnnotationBtn").removeClass("none");
+			//$(".passBtn").removeClass("none");
 		}
 		else{
 			$(".checkBtn").removeClass("none");
-			$(".passBtn,.noPassBtn").addClass("none");
+			$(".passBtn").addClass("none");
+			
 		}
 	}
 	// 内部撤回
@@ -796,15 +800,18 @@ $("#correctBtn").click(function(e) {
 				if (data.success == "true") {
 					successTip(data);
 					$(_this).parents("li").addClass("checked")
+					//当前Btn禁用，兄弟btn开启
 					$(_this).attr("disabled", true).addClass(
 							"layui-btn-disabled");
+					$(_this).siblings(".passBtn").attr("disabled", false).removeClass("layui-btn-disabled");
 					if(type=="3"){
 						//审核通过
-						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-white,layui-bg-red").addClass(
-						"layui-bg-blue");	
+						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-red").addClass(
+						"layui-bg-green");	
+						
 					}else{
 						//审核不通过
-						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-white,layui-bg-blue").addClass(
+						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-green").addClass(
 						"layui-bg-red");	
 					}
 					

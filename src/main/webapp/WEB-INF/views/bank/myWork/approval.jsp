@@ -156,11 +156,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="layui-col-xs12">
+				<div class="layui-col-xs12" id="uploadAttachmentListCon">
 				<div class="layui-form-item">
 						<label class="layui-form-label">申请材料:</label>	
 						<div class="layui-input-block">
-							<label class="gray fl" style="padding:10px 0;">(<span class="layui-badge-dot layui-bg-danger mr5"></span>为上一级审批未通过 <span
+							<label class="gray fl" style="padding:10px 0;">(<span class="layui-badge-dot layui-bg-red mr5"></span>为上一级审批未通过 <span
 							class="layui-badge-dot layui-bg-green mr5"></span>为上一级审批通过 <span class="layui-badge-dot layui-bg-blue mr5"></span>为待审批)</label>	
 						</div>
 					</div>
@@ -188,31 +188,49 @@
 							</p>
 							<div class="btn-group fr">
 								{{# if(item.preVersion!=null){ }}
-									<a href='${ctx}/attachment/down/{{item.preVersion}}/1' class="layui-btn layui-btn-xs checkBtn">
-										<i class="layui-icon">&#xe64a;</i>上一版本
+									<a href='${ctx}/attachment/down/{{item.preVersion}}/1' class="layui-btn layui-btn-xs layui-btn-primary checkBtn">
+										<i class="layui-icon"></i>上一版本
 									</a>
 								{{# } }}
 							
 								<a href='${ctx}/attachment/down/{{item.docId}}/1' class="layui-btn layui-btn-xs checkBtn none">
-									<i class="layui-icon">&#xe64a;</i>查看附件
+									<i class="layui-icon"></i>查看附件
 								</a>
 								<button type="button"
 									class="layui-btn layui-btn-warm layui-btn-xs addAnnotationBtn none" onclick="addAnnotation('{{item.docId}}')">
-									<i class="layui-icon">&#xe642;</i>添加批注									
+									<i class="layui-icon"></i>添加批注									
 								</button>
 
-								{{# if(item.statu=="1"||item.statu=="2"){ }}
+								{{# if(item.statu=="2"){ }}
 								<button type="button"
 									class="layui-btn layui-btn-normal layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
-									<i class="layui-icon">&#xe616;</i>审核通过									
+									<i class="layui-icon"></i>审核通过									
 								</button>
-								{{# } }}
-								{{# if(item.statu=="1"||item.statu=="3"){ }}
 								<button type="button"
-									class="layui-btn layui-btn-danger layui-btn-xs noPassBtn" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
-									<i class="layui-icon">&#x1007;</i>审核不通过									
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn layui-btn-disabled" disabled onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									<i class="layui-icon"></i>审核不通过									
 								</button>
-									{{# } }}
+								{{# } else if(item.statu=="3"){ }}
+					
+								<button type="button"
+									class="layui-btn layui-btn-normal layui-btn-xs passBtn layui-btn-disabled" disabled onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
+									<i class="layui-icon"></i>审核通过									
+								</button>
+								<button type="button"
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									<i class="layui-icon"></i>审核不通过									
+								</button>
+									{{# }else{ }}
+									<button type="button"
+									class="layui-btn layui-btn-normal layui-btn-xs passBtn"onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
+									<i class="layui-icon"></i>审核通过									
+								</button>
+								<button type="button"
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									<i class="layui-icon"></i>审核不通过									
+								</button>
+									{{# }}}
+
 							</div></li>
 						{{#}); }}						
 						{{#  if(d.length === 0){ }}
