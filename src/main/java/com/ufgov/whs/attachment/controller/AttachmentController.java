@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.google.gson.Gson;
+import com.ufgov.whs.attachment.bean.DocAddrInfo;
 import com.ufgov.whs.attachment.service.IAttachmentService;
+import com.ufgov.whs.attachment.service.IDocAddrInfoService;
 import com.ufgov.whs.common.utils.FileUtils;
 import com.ufgov.whs.system.utils.UserUtil;
 
@@ -33,6 +35,9 @@ public class AttachmentController {
 	
 	@Autowired
 	private IAttachmentService attachmentService;//附件服务
+		
+	@Autowired
+	private IDocAddrInfoService docAddrInfoService ;
 	/**
 	 * 附件上传
 	 * @param multiRequest
@@ -79,8 +84,17 @@ public class AttachmentController {
 		try {			
 			if (StringUtils.isNotBlank(docId)) {
 				map = attachmentService.downloadForEdit(docId);
-				String host = request.getScheme() + "://" + request.getServerName() 
+				String host = "";
+				//查出serverName
+				List<DocAddrInfo> docAddrInfos = docAddrInfoService.getByWebAddr("WEBADDRESS");
+				if(docAddrInfos!=null && docAddrInfos.size()>0){
+					String serverName = docAddrInfos.get(0).getRealAddr();
+					host = request.getScheme()+"://"+serverName;
+				}else{
+					host = request.getScheme() + "://" + request.getServerName() 
 					+ ":" + request.getServerPort();
+				}
+				System.out.println("修改后host地址为："+host);
 				map.put("flag", "success");
 				map.put("host", host);
 				map.put("userName", UserUtil.getCurrentBankUser().getName());
