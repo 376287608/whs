@@ -2,7 +2,7 @@
 <%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat,java.text.DateFormat,java.util.Date" %>
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+//String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //String basePath = request.getScheme()+"://210.73.81.163"+path+"/";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,7 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
  <link rel='stylesheet' type='text/css' href='css/iWebProduct.css' />
   <script type="text/javascript">
-		var url = '<%=basePath%>static/pdf/';
+		var url = window.location.origin+'<%=path%>static/pdf/'
+		alert(url);
 		var fileName = '<%=request.getParameter("fileName")%>';
 		var timeStr = '<%=request.getParameter("timeStr")%>';
 		var userName = '<%=request.getParameter("userName")%>';
@@ -103,7 +104,7 @@ function WebSave(){
 	function SaveDocument(){
 	  if (WebSave()){
 		$.ajax({  			
-			url: "<%=basePath%>attachment/savePdfAway", 
+			url: window.location.origin+"<%=path%>attachment/savePdfAway", 
 			type: "post",  
 			dataType:"json",
 			data: {'timeStr': timeStr, 'docId': docId},

@@ -6,7 +6,7 @@ layui.use(['jquery','layer','form','laytpl','laypage'], function(){
                   layer = layui.layer,
                   laypage=layui.laypage;
                   $.idcode.setCode();
-                  var userUrl=pathName();
+                 // var userUrl=pathName();
                   var error = $("#error").val();
                   var loginError = $("#loginError").val();
                   if(error == "org.apache.shiro.authc.AuthenticationException"){
@@ -40,22 +40,21 @@ layui.use(['jquery','layer','form','laytpl','laypage'], function(){
 			  });
 				//忘记密码
 			  $("#forgetPwd").click(function(){
+				  //获取路径判断用户
+				  if(window.location.pathname== ctx+'/company/login'){
+					  var content='企业用户如果遗失密码，可通过传真方式将企业联系电话、联系邮箱及相关企业资质证明发送给银行，银行核对后重置密码，将初始密码通过传真中的联系邮箱发送给企业。'
+				  }else{
+					  var content='银行用户如果遗失，请联系管理员。'
+				  }
                   layer.open({
                       skin: 'demo-class',
                       title: '温馨提示',
                       area: ['500px'],
-					  content: '企业用户如果遗失密码，可通过传真方式将企业联系电话、联系邮箱及相关企业资质证明发送给银行，银行核对后重置密码，将初始密码通过传真中的联系邮箱发送给企业。'
-                  });
+					  content:content });
 
 			  });
-			  //获取路径判断用户
-			  function pathName(){
-				  var pathUrl = window.location.pathname;
-		          /* if(pathUrl== ctx+'/company/login'){
-		        	 //办事指南列表
-		   			publicGuidesList();
-		           }*/
-			  }
+			 
+			 
 			  
 			    /**
 				 * 公共办事指南
