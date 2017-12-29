@@ -307,7 +307,7 @@ canvas {
 .layui-input-block .layui-bg-orange,
 #attachmentListCon .layui-bg-orange,
 #uploadAttachmentListCon .layui-bg-orange{
-	/* 必传附件	 */
+	/* 必传附件 */
 	background:#FF5722 url("../images/btn-must.png") center no-repeat;	
 	background-size:100%;	
 }
