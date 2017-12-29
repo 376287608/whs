@@ -13,8 +13,10 @@ String path = request.getContextPath();
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
  <link rel='stylesheet' type='text/css' href='css/iWebProduct.css' />
   <script type="text/javascript">
-		var url = window.location.origin+'<%=path%>static/pdf/'
-		alert(url);
+		if (!window.location.origin) {
+	        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+	    }
+		var url = window.location.origin+'<%=path%>/static/pdf/';
 		var fileName = '<%=request.getParameter("fileName")%>';
 		var timeStr = '<%=request.getParameter("timeStr")%>';
 		var userName = '<%=request.getParameter("userName")%>';
@@ -102,9 +104,12 @@ function WebSave(){
 	
 	 //作用：保存文档
 	function SaveDocument(){
+	  if (!window.location.origin) {
+        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+      }
 	  if (WebSave()){
 		$.ajax({  			
-			url: window.location.origin+"<%=path%>attachment/savePdfAway", 
+			url: window.location.origin+"<%=path%>/attachment/savePdfAway", 
 			type: "post",  
 			dataType:"json",
 			data: {'timeStr': timeStr, 'docId': docId},

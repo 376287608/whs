@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.ufgov.whs.approval.bean.ApprovalReport;
+import com.ufgov.whs.attachment.bean.DocAddrInfo;
+import com.ufgov.whs.attachment.service.IDocAddrInfoService;
 import com.ufgov.whs.attachment.service.IExportImportService;
 
 @Controller
@@ -24,6 +26,9 @@ public class ExportImportController {
 
 	@Autowired
 	private IExportImportService exportImportService;
+	
+	@Autowired
+	private IDocAddrInfoService docAddrInfoService ;
 	
 	/**
 	 * 文件导出
@@ -38,9 +43,19 @@ public class ExportImportController {
 		try {			
 			if (StringUtils.isNotBlank(ids)) {
 				String zipLink = exportImportService.download(ids);
-				zipLink = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()
-				+ request.getContextPath() + "/"
-				+ zipLink;
+				//查出serverName
+				List<DocAddrInfo> docAddrInfos = docAddrInfoService.getByWebAddr("WEBADDRESS");
+				if(docAddrInfos!=null && docAddrInfos.size()>0){
+					String serverName = docAddrInfos.get(0).getRealAddr();
+					zipLink = request.getScheme()+"://"+serverName
+							+ request.getContextPath() + "/"
+							+ zipLink;
+				}else{
+					zipLink = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()
+					+ request.getContextPath() + "/"
+					+ zipLink;
+				}
+				System.out.println("修改后文件下载地址为："+zipLink);
 				map.put("flag", "success");
 				map.put("msg", "导出成功");
 				map.put("zipUrl", zipLink);
