@@ -441,7 +441,7 @@ function fileCheck(feid,fileType) { // 自己添加的文件后缀名的验证
 var otherLen = 0;
 var fileLen = 0;
 var baseLen = 0;
-addAttachment = function() {
+addAttachment = function(type) {
 	$("#nothingCon").remove();
 	otherLen = $("#attachmentListCon .otherAttachement").length;
 	baseLen = $("#attachmentListCon li").length;
@@ -461,6 +461,8 @@ addAttachment = function() {
 				+ uuids
 				+ '","otherFile'
 				+ uuids
+				+ '","'
+				+ type
 				+ '")></div></div></li>';
 
 		$("#attachmentListCon").append(htmls);
