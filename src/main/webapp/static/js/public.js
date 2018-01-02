@@ -374,8 +374,9 @@ function treeJson(jsonArray){
 /*---------------------------------附件------------------------------*/
 
 // 上传附件
-ajaxFileUpload = function(feid, sum) {
-	 if (fileCheck(feid)) { 
+ajaxFileUpload = function(feid, otherid,type) {
+	//feid 文件id;otherid 文件数,type 上传文件类型
+	 if (fileCheck(feid,type)) { 
 	$.ajaxFileUpload({
 		url : ctx + '/attachment/upload',// 用于文件上传的服务器端请求地址
 		secureuri : false,// 一般设置为false
@@ -394,7 +395,7 @@ ajaxFileUpload = function(feid, sum) {
 			$("#"+feid).parents("li").find(".layui-badge-dot")
 					.addClass("layui-bg-blue")
 			$("#"+feid).parents("li").attr('data-id', data[0].id);
-			$("#"+feid).parents("li").attr('data-otherflag',sum);
+			$("#"+feid).parents("li").attr('data-otherflag',otherid);
 			$("#"+feid).parents("li").attr('data-attachmentId',
 					data[0].fileId);
 			$("#"+feid).parents(".btn-group").find(".checkBtn")
@@ -411,16 +412,28 @@ ajaxFileUpload = function(feid, sum) {
 	} 
 	return false;
 }
-function fileCheck(feid) { // 自己添加的文件后缀名的验证
+function fileCheck(feid,fileType) { // 自己添加的文件后缀名的验证
 	var file = document.getElementById(feid);
-	return /.(pdf|PDF)$/.test($('#'+feid).val()) ? true : (function() {
-		layer.msg('仅支持.pdf格式的文件', {
-			icon : 5,
-			anim : 6,
-			offset: '200px'
-		});
-		return false;
-	})();
+	if(fileType==''||fileType==undefined||fileType=='undefined'||fileType=='pdf'){
+		return /.(pdf)$/.test($('#'+feid).val().toLowerCase()) ? true : (function() {
+			layer.msg('仅支持.pdf格式的文件', {
+				icon : 5,
+				anim : 6,
+				offset: '200px'
+			});
+			return false;
+		})();
+	}else if(fileType=='all'){
+		return /.(pdf|doc|docx|txt|xls|xlsx)$/.test($('#'+feid).val().toLowerCase()) ? true : (function() {
+			layer.msg('仅支持.pdf,.doc,.txt,.xls,.png,jpg,.jpeg,.bm格式的文件', {
+				icon : 5,
+				anim : 6,
+				offset: '200px'
+			});
+			return false;
+		})();
+	}
+	
 }
 /* 添加其他附件 */
 var otherLen = 0;

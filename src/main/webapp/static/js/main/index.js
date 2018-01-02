@@ -36,10 +36,12 @@ layui.use([ 'jquery', 'laytpl', 'element','layer','laypage','table'], function()
 	$("#updatePwd").click(function(){
 		var index = layer.open({
 					  type: 2,
+					  title:'修改密码',
 					  content: $("#ctx").val()+'/system/user/updatePwd',
-					  area: ['1300px', '600px'],
+					  area: ['500px', '600px'],
 					  maxmin: true
 					});
+		layer.full(index)
 	});
 	
 	/**
@@ -48,10 +50,12 @@ layui.use([ 'jquery', 'laytpl', 'element','layer','laypage','table'], function()
 	$("#updateCompany").click(function(){
 		var index = layer.open({
 					  type: 2,
+					  title:'修改信息',
 					  content: $("#ctx").val()+'/company/updateUser',
 					  area: ['1300px', '600px'],
 					  maxmin: true
 					});
+		layer.full(index)
 	});
 	
 	Menu();

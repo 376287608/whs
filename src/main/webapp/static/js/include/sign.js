@@ -39,7 +39,7 @@ layui.use(['form', 'jquery','upload','laypage'], function () {
     });
         
  // 上传附件
-    ajaxFileUpload = function(feid) {
+    ajaxImgUpload = function(feid) {
     	 if (imgCheck(feid)) { 
     	$.ajaxFileUpload({
     		url : ctx + '/attachment/upload',// 用于文件上传的服务器端请求地址
@@ -58,7 +58,8 @@ layui.use(['form', 'jquery','upload','laypage'], function () {
     			$("#docId").val(data[0].fileId);
     			$("#docName").val(data[0].fileName);
 				$("#docNameByuser").text($("#"+feid).val());
-				$("#"+feid).val("").parent('button').text("图片已上传");
+				$("#"+feid).val("");
+				//.parent('button').text("图片已上传");
     		},
     		error : function(data, status, e)// 服务器响应失败处理函数
     		{
@@ -70,8 +71,8 @@ layui.use(['form', 'jquery','upload','laypage'], function () {
     }
     function imgCheck(feid) { // 自己添加的文件后缀名的验证
     	var file = document.getElementById(feid);
-    	return /.(png|jpg|bpm)$/.test($('#'+feid).val()) ? true : (function() {
-    		layer.msg('仅支持.png,.jpg,.bpm格式的图片', {
+    	return /.(png|jpg|jpeg|bpm)$/.test($('#'+feid).val().toLowerCase()) ? true : (function() {
+    		layer.msg('仅支持.png,.jpg,jpeg,.bmp格式的图片', {
     			icon : 5,
     			anim : 6,
     			offset: '200px'

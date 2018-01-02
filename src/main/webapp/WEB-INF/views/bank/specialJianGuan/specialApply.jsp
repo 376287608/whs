@@ -131,7 +131,7 @@
 						
 								<div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr">
 									<i class="layui-icon">&#xe67c;</i>上传附件
-									<input type="file" name="file" class="upload-file pa" id="File{{item.displayOrder}}" onchange=ajaxFileUpload("File{{item.filetypeIndex}}",'')>
+									<input type="file" name="file" class="upload-file pa" id="File{{item.displayOrder}}" onchange=ajaxFileUpload("File{{item.filetypeIndex}}",'','all')>
 								</div>
 								<button type="button" class="layui-btn layui-btn-danger layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon"></i>删除附件</button>
 

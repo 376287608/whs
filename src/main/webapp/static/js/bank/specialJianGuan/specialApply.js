@@ -267,18 +267,7 @@ layui
 						    			dataType : "json",
 						    			success : function(data) {
 											successTip(data);
-											formId=data.formId;
-										
-										/*	$(_this).attr("disabled", true).addClass(
-													"layui-btn-disabled");*/
-											/*if(frash=="index"){				
-												//刷新当前页
-												freshenlocation();	
-											}else{						
-												//返回上一级					
-												freshen();	
-											}*/
-											
+											formId=data.formId;											
 										},
 						    			error : function(data) {
 						    				errorTip(data);
