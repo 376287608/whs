@@ -12,7 +12,7 @@
 			.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
 	request.setAttribute("error", error);
 %>
-<!--代办理-->
+<!--待办理-->
 <html>
 <head>
 <meta charset="utf-8">

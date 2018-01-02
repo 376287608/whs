@@ -108,7 +108,7 @@
 						（<span class="layui-badge-dot layui-bg-danger mr5"></span>为必传项 <span
 							class="layui-badge-dot layui-bg-blue mr5"></span>为已传项）
 					</p> -->
-					<p class="ib fr" id="addAttachment" onclick="addAttachment()">
+					<p class="ib fr" id="addAttachment" onclick="addAttachment('all')">
 						<i class="layui-icon vm" style="font-size: 26px;">&#xe61f;</i> <span>添加其他附件</span>
 						<span class="f12 gray mt5">（最多上传十个其他附件）</span>
 					</p>

@@ -103,21 +103,19 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 		laytpl(getTpl).render(data, function(html) {
 			view.innerHTML = html;
 		});
-		if(Type=="待审批"||Type=="待接收"){
-			$(".addAnnotationBtn").removeClass("none");	
 		
-		}else if(Type=="待接收"){
 		
+		alert(Type)
+		if(Type=="待审批"){					
+			$(".checkBtn").removeClass("none");			
+		}else if(Type==""){
+			$(".checkBtn").removeClass("none");	
+		}else{	
 			$(".addAnnotationBtn").removeClass("none");
-		}else if(Type=="导入"||Type=="人工录入"){
-			$(".addAnnotationBtn").removeClass("none");
-			//$(".passBtn").removeClass("none");
+			$(".passBtn").removeClass("none");
+			$(".checkBtn").removeClass("none");	
 		}
-		else{
-			$(".checkBtn").removeClass("none");
-			$(".passBtn").addClass("none");
-			
-		}
+				
 	}
 	// 内部撤回
 	$("#cancelBtn").click(
