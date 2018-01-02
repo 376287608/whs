@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -722,21 +723,27 @@ public class ApprovalFormService {
 	}
 
 	/**
-	 * 待接收业务 获取分页数据 包括记录和条数
+	 * 获取分页数据 包括记录和条数
 	 * @param pageRequest
 	 * @param clazz
 	 * @param user
+	 * @param flag 0待接收 1已退回
 	 * @return
 	 * @throws Exception
 	 */
 	public PageImpl getFindAll(PageRequest pageRequest, Class clazz,
-			SysUser user) throws Exception {
+			SysUser user,String flag) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from approval_form where receive_by ='"
 				+ user.getLoginName() + "' ");
-		sql.append(" and statu_company = '" + StatuConstant.FORMSTATU_SUBMIT
-				+ "'");
+		if(!StringUtils.isBlank(flag) && flag.equals("0")){
+			sql.append(" and statu_company = '" + StatuConstant.FORMSTATU_SUBMIT
+					+ "'");
+		}else if(!StringUtils.isBlank(flag) && flag.equals("1")){
+			sql.append(" and statu_company = '" + StatuConstant.FORMSTATU_RETURN
+					+ "'");
+		}
 		return ipaginationservice.getPageImpl(sql.toString(), pageRequest,
 				clazz);
 	}

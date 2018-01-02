@@ -92,7 +92,6 @@ public class ApprovalFormController{
 				if(!startDate.matches("\\d{4}-\\d{2}-\\d{2}") || !endDate.matches("\\d{4}-\\d{2}-\\d{2}")){
 					return null ;
 				}
-				
 			}
 		} catch (Exception e) {
 			throw new Exception("时间错误");
@@ -131,7 +130,7 @@ public class ApprovalFormController{
 		Map<String,Object> pageInfo = null;
 		PageRequest pageRequest = approvalFormService.buildPageRequest(pageNumber, pageSize,"desc","submit_time");
 		try {
-			page = approvalFormService.getFindAll(pageRequest,ApprovalForm.class,user);
+			page = approvalFormService.getFindAll(pageRequest,ApprovalForm.class,user,"0");
 			pageInfo = approvalFormService.getPageInfo(page);
 			pageInfo.put("success", "true");
 		} catch (Exception e) {
@@ -139,6 +138,46 @@ public class ApprovalFormController{
 			throw new Exception("业务申请列表查询失败");
 		}
 		return pageInfo ;
+	}
+	
+	/**
+	 * 被退回业务
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "finally", "unchecked" })
+	@RequestMapping(value="/getReturned",method = {RequestMethod.GET,RequestMethod.POST})
+	public @ResponseBody Map<String,Object> getReturned(Integer pageNumber,Integer pageSize) throws Exception {
+		//返回信息
+		Map<String,Object> info = new HashMap<String, Object>();
+		info.put("msg", "查询失败");
+		info.put("success", "false");
+		//校验分页参数
+		if(null == pageNumber || null == pageSize){
+			return info ;
+		}
+		try {
+			//当前用户
+			SysUser user = (SysUser)SecurityUtils.getSubject().getSession().getAttribute("user");
+			if(user == null){
+				info.put("msg", "用户未登录");
+				return info ;
+			}
+			PageRequest pageRequest = approvalFormService.buildPageRequest(pageNumber, pageSize,"desc","submit_time");
+			//分页对象
+			Page<ApprovalForm> page = approvalFormService.getFindAll(pageRequest,ApprovalForm.class,user,"1");
+			info.put("rows", page.getContent());
+			info.put("count", page.getTotalElements());
+			info.put("msg", "查询成功");
+			info.put("success", "true");
+		} catch (Exception e) {
+			logger.error("查询失败！"+e.getMessage(), e);
+			throw new Exception("查询失败！"+e.getMessage(),e);
+		}finally{
+			return info ;
+		}
 	}
 	/**
 	 * 人工分派列表
@@ -183,7 +222,6 @@ public class ApprovalFormController{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("finally")
 	@RequestMapping(value="/getArtificialList",method = {RequestMethod.POST,RequestMethod.GET})
 	public @ResponseBody Map<String,Object> getArtificialInfo(Integer businessId){
 		//返回信息
