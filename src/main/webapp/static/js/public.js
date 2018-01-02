@@ -34,7 +34,9 @@ formVerify = function() {
 	// 自定义验证规则
 	form.verify({
 		// 密码验证
-		password : [ /^[a-zA-Z0-9]{6,14}$/, '密码填写有误，请检查录入数据是否正确' ]
+		password : [ /^[a-zA-Z0-9]{6,14}$/, '密码必须为6~14位的字母或数字' ],
+		//九位数字
+		nineNumber : [ /^[0-9]{9}$/, '企业代码必须为9位数字' ]
 		// 电话验证
 		,
 		phone : [ /^[\w-]{1,11}$/, '联系电话填写有误，请检查录入数据是否正确' ]
@@ -43,11 +45,11 @@ formVerify = function() {
 		,
 		repwd : function(value, item) {
 			if (!/^[a-zA-Z0-9]{6,14}$/.test(value)) {
-				return "密码填写有误，请检查录入数据是否正确";
+				return "密码必须为6~14位的字母或数字";
 			}
 			var pwd = $("#password").val();
 			if (pwd != value) {
-				return "密码填写有误，请检查录入数据是否正确";
+				return "新密码确认与新密码输入不一致";
 			}
 		},
 		orgBarcode : function(value, item) {
