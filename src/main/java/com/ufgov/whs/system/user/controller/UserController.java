@@ -87,9 +87,9 @@ public class UserController extends BaseController {
 		//返回信息
 		Map<String,String> map = new HashMap<String, String>();
 		if (userService.checkPassword(user,oldPwd)) {
-			map.put("message", "1,密码正确") ;
+			map.put("message", "1,原密码正确") ;
 		} else {
-			map.put("message", "0,密码错误") ;
+			map.put("message", "0,原密码错误") ;
 		}
 		return map ;
 	}
@@ -108,9 +108,15 @@ public class UserController extends BaseController {
 			return info;
 		}
 		//密码格式校验
-		if(!pwd.matches("^[a-zA-Z0-9]{6,14}$") || !pwd.equals(repwd)){
+		if(!pwd.matches("^[a-zA-Z0-9]{6,14}$")){
 			info.put("flag", "0") ;
-			info.put("message", "新密码录入有误");
+			info.put("message", "密码必须为6~14位的字母或数字");
+			return info;
+		}
+		//新密码确认
+		if(!pwd.equals(repwd)){
+			info.put("flag", "0") ;
+			info.put("message", "新密码确认与新密码输入不一致");
 			return info;
 		}
 		//当前用户
@@ -126,7 +132,7 @@ public class UserController extends BaseController {
 			return info;
 		}else{
 			info.put("flag", "0") ;
-			info.put("message", "密码错误");
+			info.put("message", "原密码错误");
 			return info;
 		}
 	}
@@ -137,7 +143,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	public boolean isEmpty(String str){
-		if(str == null || str.trim() == ""){
+		if(str == null || str.trim().equals("")){
 			return true ;
 		}
 		return false ;

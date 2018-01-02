@@ -10,22 +10,22 @@ layui.use(['form', 'jquery'], function () {
       //密码验证
   	  password: [
   	    /^[[a-zA-Z0-9]{6,14}$/
-  	    ,'新密码录入有误'
+  	    ,'密码必须为6~14位的字母或数字'
   	  ]
     //value：表单的值、item：表单的DOM对象
     //密码确认
     ,repwd:function(value, item){
     	if(!/^[a-zA-Z0-9]{6,14}$/.test(value)){
-    		return "新密码录入有误";
+    		return "密码必须为6~14位的字母或数字";
     	}
     	var pwd = $("#password").val();
     	if(pwd != value){
-    		return "新密码录入有误";
+    		return "新密码确认与新密码输入不一致";
     	}
     }
     ,oldPwd: function(value, item){
     	if(!/^[a-zA-Z0-9]{6,14}$/.test(value)){
-    		return "密码错误";
+    		return "原密码错误";
     	}
     	var message = ajaxCheckPwd(value);
    	 	if(message.substring(0,1) == '0'){
