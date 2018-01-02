@@ -164,7 +164,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">企业代码:</label>
 							<div class="layui-input-block">
-								<input type="text" name="applyOrgCode" required lay-verify="required"
+								<input type="text" name="applyOrgCode" required lay-verify="required|nineNumber"
 									placeholder="请输入企业组织机构代码" autocomplete="off" class="layui-input">
 							</div>
 						</div>
