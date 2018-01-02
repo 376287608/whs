@@ -104,8 +104,6 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 			view.innerHTML = html;
 		});
 		
-		
-		alert(Type)
 		if(Type=="待审批"){					
 			$(".checkBtn").removeClass("none");			
 		}else if(Type==""){
