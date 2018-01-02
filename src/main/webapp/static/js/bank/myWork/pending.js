@@ -50,13 +50,14 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
       var data = obj.data;
        Id=data.id; 
        businessId=data.businessId;
+       bussinessType=data.statuBank;
        layui.data('business', {
         	  key: 'businessId'
                	  ,value: businessId
                	});
        
       if(obj.event === 'newlayer'){  	 
-    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type=待审批';
+    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+bussinessType;
       }
     });
     

@@ -497,8 +497,8 @@ public class SpecialJianGuanService{
 	public PageImpl getToTransactList(PageRequest pageRequest,Class clazz,SysUser user) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
-		sql.append("select t.* from approval_report t,pro_instance p where 1=1 ");
-		sql.append(" and isfinish != 1 ") ;
+		sql.append("select t.* from v_approvalreport_dept t,pro_instance p where 1=1 ");
+		sql.append(" and t.isfinish != 1 and t.verify_dept_id='4' ") ;
 		sql.append(" and t.process_id2 = p.id ");
 		sql.append(" and p.del_flag = '1' ");
 		//当前操作人
@@ -612,8 +612,8 @@ public class SpecialJianGuanService{
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from ");
-		sql.append(" (select * from approval_report where 1=1");
-		sql.append(" and isfinish != 1 ") ;
+		sql.append(" (select * from v_approvalreport_dept where 1=1");
+		sql.append(" and isfinish != 1  and  verify_dept_id='4' ") ;
 		sql.append(" and statu_bank in ( '");
 		sql.append(StatuConstant.REPORTSTATU_SPZ);
 		
@@ -622,7 +622,7 @@ public class SpecialJianGuanService{
 		sql.append(" (select report_id,operator_by from business_log where operator_by = '"+user.getLoginName()+"' GROUP BY report_id,operator_by ) b ");
 		sql.append(" on t.id = b.report_id ");
 		sql.append(" INNER JOIN ");
-		sql.append(" (select id pro_instance_id,currentuser,currentstep_time from pro_instance where currentuser != '"+user.getLoginName()+"') p ");
+		sql.append(" ( SELECT p.id pro_instance_id, b.name as currentuser, p.currentstep_time FROM pro_instance p, sys_user u, bank_user b WHERE p.currentuser = u.login_name and u.id = b.user_id and p.currentuser != '"+user.getLoginName()+"') p ");
 
 		sql.append(" on t.process_id2 = p.pro_instance_id ");
 		
@@ -643,7 +643,7 @@ public class SpecialJianGuanService{
 		sql.append("select * from approval_report where id in ( ");
 		sql.append(" select report_id from ( ");
 		sql.append(" select report_id,operator_by from business_log where report_id in ( ");
-		sql.append(" select id from approval_report where isfinish = '1' ");
+		sql.append(" select id from v_approvalreport_dept where isfinish = '1'  and  verify_dept_id='4' ");
 		sql.append(" ) group by report_id ,operator_by ) t where operator_by = '"+user.getLoginName()+"')");
 	    return ipaginationservice.getPageImpl(sql.toString(), pageRequest, clazz);
 	}
@@ -752,7 +752,7 @@ public class SpecialJianGuanService{
 			businessId = b.getId();
 		}
 		StringBuilder sql = new StringBuilder();
-		sql.append("select * from approval_report where 1=1 ");
+		sql.append("select * from v_approvalreport_dept where 1=1 and verify_dept_id='4' ");
 		if(businessId==0){
 			return null;
 		}else{

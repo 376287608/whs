@@ -182,7 +182,7 @@
 							{{#	}else{ }}
 							{{#	isCheck='';dot="layui-bg-blue";}}
 							{{# } }}
-							<li class="clearfix cl mb10 {{isCheck}}" data-checktype="{{item.checkType}}" data-id="{{item.id}}" data-otherFlag="otherFile{{item.filetypeIndex}}"><p class="fl layui-elip" style="width:60%">
+							<li class="clearfix cl mb10 {{isCheck}}" data-checktype="{{item.checkType}}" data-id="{{item.id}}" data-otherFlag="otherFile{{item.filetypeIndex}}"><p class="fl layui-elip" style="width:48%">
 								<span class="layui-badge-dot mr5 {{dot}}"></span>
 								<em class="fn">{{item.displayOrder}}</em>.<em class="filetype fn">{{item.filetypeName}}</em>
 							</p>
@@ -203,30 +203,30 @@
 
 								{{# if(item.statu=="2"){ }}
 								<button type="button"
-									class="layui-btn layui-btn-normal layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
+									class="layui-btn layui-btn-normal layui-btn-xs passBtn none" onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
 									<i class="layui-icon"></i>审核通过									
 								</button>
 								<button type="button"
-									class="layui-btn layui-btn-danger layui-btn-xs passBtn layui-btn-disabled" disabled onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn layui-btn-disabled none" disabled onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
 									<i class="layui-icon"></i>审核不通过									
 								</button>
 								{{# } else if(item.statu=="3"){ }}
 					
 								<button type="button"
-									class="layui-btn layui-btn-normal layui-btn-xs passBtn layui-btn-disabled" disabled onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
+									class="layui-btn layui-btn-normal layui-btn-xs passBtn layui-btn-disabled none" disabled onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
 									<i class="layui-icon"></i>审核通过									
 								</button>
 								<button type="button"
-									class="layui-btn layui-btn-danger layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn none" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
 									<i class="layui-icon"></i>审核不通过									
 								</button>
 									{{# }else{ }}
 									<button type="button"
-									class="layui-btn layui-btn-normal layui-btn-xs passBtn"onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
+									class="layui-btn layui-btn-normal layui-btn-xs passBtn none"onclick="verifyAttachment('{{item.docId}}',3,'.passBtn',this)">
 									<i class="layui-icon"></i>审核通过									
 								</button>
 								<button type="button"
-									class="layui-btn layui-btn-danger layui-btn-xs passBtn" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
+									class="layui-btn layui-btn-danger layui-btn-xs passBtn none" onclick="verifyAttachment('{{item.docId}}',2,'.noPassBtn',this)">
 									<i class="layui-icon"></i>审核不通过									
 								</button>
 									{{# }}}

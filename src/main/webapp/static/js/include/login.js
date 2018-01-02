@@ -44,7 +44,7 @@ layui.use(['jquery','layer','form','laytpl','laypage'], function(){
 				  if(window.location.pathname== ctx+'/company/login'){
 					  var content='企业用户如果遗失密码，可通过传真方式将企业联系电话、联系邮箱及相关企业资质证明发送给银行，银行核对后重置密码，将初始密码通过传真中的联系邮箱发送给企业。'
 				  }else{
-					  var content='银行用户如果遗失，请联系管理员。'
+					  var content='银行用户如果遗失密码，请联系管理员。'
 				  }
                   layer.open({
                       skin: 'demo-class',

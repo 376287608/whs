@@ -838,8 +838,8 @@ public class ApprovalReportService{
 	public PageImpl getToTransactList(PageRequest pageRequest,Class clazz,SysUser user,boolean flag) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
-		sql.append("select t.* from approval_report t,pro_instance p where 1=1 ");
-		sql.append(" and isfinish != 1 ") ;
+		sql.append("select t.* from v_approvalreport_dept t,pro_instance p where 1=1 ");
+		sql.append(" and t.isfinish != 1 and t.verify_dept_id='3' ") ;
 		if(flag){//内网
 			sql.append(" and t.process_id2 = p.id ");
 		}else{
@@ -870,8 +870,8 @@ public class ApprovalReportService{
 	public PageImpl getToFinishList(PageRequest pageRequest,Class clazz,SysUser user,boolean flag) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
-		sql.append("select t.* from approval_report t,pro_instance p where 1=1 ");
-		sql.append(" and isfinish != 1 ") ;
+		sql.append("select t.* from v_approvalreport_dept t,pro_instance p where 1=1 ");
+		sql.append(" and t.isfinish != 1  and t.verify_dept_id='3' ") ;
 		if(flag){//内网
 			sql.append(" and t.process_id2 = p.id ");
 		}else{
@@ -1081,8 +1081,8 @@ public class ApprovalReportService{
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from ");
-		sql.append(" (select * from approval_report where 1=1");
-		sql.append(" and isfinish != 1 ") ;
+		sql.append(" (select * from v_approvalreport_dept where 1=1");
+		sql.append(" and isfinish != 1  and  verify_dept_id='3' ") ;
 		sql.append(" and statu_bank in ( '");
 		if(flag){//内网
 			sql.append(StatuConstant.REPORTSTATU_SPZ+"','"+StatuConstant.REPORTSTATU_DBZ);
@@ -1118,7 +1118,7 @@ public class ApprovalReportService{
 		sql.append("select * from approval_report where id in ( ");
 		sql.append(" select report_id from ( ");
 		sql.append(" select report_id,operator_by from business_log where report_id in ( ");
-		sql.append(" select id from approval_report where isfinish = '1' ");
+		sql.append(" select id from v_approvalreport_dept where isfinish = '1'  and verify_dept_id='3' ");
 		sql.append(" ) group by report_id ,operator_by ) t where operator_by = '"+user.getLoginName()+"') ");
 	    return ipaginationservice.getPageImpl(sql.toString(), pageRequest, clazz);
 	}
@@ -1221,7 +1221,7 @@ public class ApprovalReportService{
 			String startDate, String endDate,Integer userId) throws Exception {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
-		sql.append("select * from approval_report where 1=1 ");
+		sql.append("select * from v_approvalreport_dept where 1=1 and verify_dept_id='3' ");
 		//可查询的审批单必须启动流程
 		if(isInner()){//内网 
 			sql.append(" and process_id2 is not null ");
