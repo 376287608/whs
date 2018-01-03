@@ -44,7 +44,7 @@ layui
 					form.on('submit(applyFormStartup)', function(data) {
 						// startupForm(typeId)
 						submitForm(typeId, 'submit', '#submitBtn');
-						return false;
+						//return false;
 					});
 
 					processList = function(data) {
@@ -61,9 +61,7 @@ layui
 							htmls += '<div class="layui-input-block">'
 							htmls += '<select name="noticeGet" id="nextApproverSelect">'
 							for (i = 0; i < len; i++) {
-								htmls += '<option value=' + data[i].id
-										+ ' data-formId=' + formId + '>'
-										+ data[i].processName + '</option>'
+								htmls += '<option value=' + data[i].id+'>'+ data[i].processName + '</option>';
 							}
 							htmls += '</select></div></div></div></div>';
 							layer

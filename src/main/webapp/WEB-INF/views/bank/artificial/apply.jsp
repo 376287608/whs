@@ -185,7 +185,7 @@
 						{{#  layui.each(d, function(index, item){ }}
 							<li class="clearfix cl mb10" data-checktype="{{item.checkType}}" data-id="{{item.id}}" data-otherFlag="otherFile{{item.filetypeIndex}}"><p class="fl layui-elip" style="width:70%">
 								{{# if(item.checkType=="1"){ }}
-									<span class="layui-badge-dot layui-bg-danger mr5"></span>
+									<span class="layui-badge-dot layui-bg-orange mr5"></span>
 								{{# }else{ }}
 										<span class="layui-badge-dot layui-bg-white mr5"></span>
 								{{# } }}

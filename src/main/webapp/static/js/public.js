@@ -427,7 +427,7 @@ function fileCheck(feid,fileType) { // 自己添加的文件后缀名的验证
 		})();
 	}else if(fileType=='all'){
 		return /.(pdf|doc|docx|txt|xls|xlsx)$/.test($('#'+feid).val().toLowerCase()) ? true : (function() {
-			layer.msg('仅支持.pdf,.doc,.txt,.xls,.png,jpg,.jpeg,.bm格式的文件', {
+			layer.msg('仅支持.pdf,.doc,.txt,.xls,.png,jpg,.jpeg,.bmp格式的文件', {
 				icon : 5,
 				anim : 6,
 				offset: '200px'
@@ -557,7 +557,7 @@ submitForm = function(typeId, type, ele,frash) {
 					jsonObj["filetypeName"] = filetypeName;// 文件名称
 
 					dataAttchmentList.push(jsonObj);
-					console.log(dataAttchmentList)
+					//console.log(dataAttchmentList)
 				}
 				return flag = true;
 			} else {
@@ -570,7 +570,7 @@ submitForm = function(typeId, type, ele,frash) {
 					jsonObj["otherFlag"] = otherFlag;// 上传标记
 					jsonObj["filetypeName"] = filetypeName;// 文件名称
 					dataAttchmentList.push(jsonObj);
-					console.log(dataAttchmentList)
+					//console.log(dataAttchmentList)
 				}
 				return flag = true;
 			}
@@ -578,7 +578,7 @@ submitForm = function(typeId, type, ele,frash) {
 
 	});
 	var attachmentlist = JSON.stringify(dataAttchmentList);
-	console.log(attachmentlist);
+	//console.log(attachmentlist);
 	if (flag != false) {
 		var noticeGet = $("#userForm select[name='noticeGet']").val();
 		var formId = $("#formId").val();
