@@ -33,6 +33,15 @@ public class BankController{
 	}
 	
 	/**
+	 * 被退回
+	 * @return
+	 */
+	@RequestMapping(value="/myWork/returned",method = RequestMethod.GET)
+	public String returned() {
+		return "bank/myWork/returned";
+	}
+	
+	/**
 	 * 待办理
 	 * @return
 	 */
