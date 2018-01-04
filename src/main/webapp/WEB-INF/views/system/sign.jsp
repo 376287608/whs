@@ -119,10 +119,10 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">上传附件:</label>
 						<div class="layui-input-block">			
-							<button type="button" class="layui-btn layui-btn-normal">
+							<a type="button" class="layui-btn layui-btn-normal pr oh">
 								<i class="layui-icon">&#xe67c;</i>上传图片
 								<input type="file" name="file" class="upload-file pa" id="signFile" onchange="ajaxImgUpload('signFile')" >
-							</button>
+							</a>
 							<input id="docId" name="docId" type="hidden" lay-verify="files">
 							<input id="docName" name="docName" type="hidden" lay-verify="files">
 							

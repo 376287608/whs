@@ -455,7 +455,7 @@ addAttachment = function(type) {
 		htmls += '<div class="btn-group fr">';
 		htmls += ' <button type="button"class="layui-btn layui-btn-danger layui-btn-xs deleteBtn" onclick="delAttachment(this)"><i class="layui-icon"></i>删除附件</button>';
 		htmls += ' <a href="" class="layui-btn layui-btn-xs checkBtn none"><i class="layui-icon"></i>查看附件</a>';
-		htmls += ' <div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr"><i class="layui-icon"></i>上传附件<input type="file" name="file" class="upload-file pa" id="otherFile'
+		htmls += ' <div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr oh"><i class="layui-icon"></i>上传附件<input type="file" name="file" class="upload-file pa" id="otherFile'
 				+ uuids
 				+ '" onchange=ajaxFileUpload("otherFile'
 				+ uuids

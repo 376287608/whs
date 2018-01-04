@@ -185,7 +185,7 @@ canvas {
  .layui-input:focus + .layui-clean{
  	visibility:visible;
  }
- /* tab切换标题 */
+ /* tab鍒囨崲鏍囬 */
  #tabTitle>li:first-child i {
     display: none;
  }
@@ -254,11 +254,12 @@ canvas {
     color:#333;
 }
 .upload-file{
-	left: 0;
-	filter:alpha(opacity=0);
-    opacity: 0;
-    width: 110px;
+	right: 0;
+ 	filter:alpha(opacity=0);
+    opacity: 0;  
+    width: 140px;
     height: 100%;
+    font-size: 200px;
 	
 }
 .ruleInfoTitle p{
@@ -291,39 +292,39 @@ canvas {
 }
 .layui-input-block .layui-bg-blue,
  #uploadAttachmentListCon .layui-bg-blue{
-	/* 待提交附件	 */
+	/* 寰呮彁浜ら檮浠�	 */
 	background:#1E9FFF url("../images/btn-wait.png") center no-repeat !important;
 	background-size:100%;	
 }
 .layui-input-block .layui-bg-green,
 #attachmentListCon .layui-bg-green,
 #uploadAttachmentListCon .layui-bg-green{
-	/* 审核通过附件	 */
+	/* 瀹℃牳閫氳繃闄勪欢	 */
 	background:url("../images/btn-pass.png") center no-repeat;	
 	background-size:100%;	
 }
 .layui-input-block .layui-bg-red,
 #attachmentListCon .layui-bg-red,
 #uploadAttachmentListCon .layui-bg-red{
-	/* 审核不通过附件	 */
+	/* 瀹℃牳涓嶉�氳繃闄勪欢	 */
 	background:#FF5722 url("../images/btn-nopass.png") center no-repeat;	
 	background-size:90%;	
 }
 .layui-input-block .layui-bg-orange,
 #attachmentListCon .layui-bg-orange,
 #uploadAttachmentListCon .layui-bg-orange{
-	/* 必传附件 */
+	/* 蹇呬紶闄勪欢 */
 	background:#FF5722 url("../images/btn-must.png") center no-repeat;	
 	background-size:100%;	
 }
 #uploadAttachmentListCon .layui-bg-danger{
-	/* 审核不通过附件	 */
+	/* 瀹℃牳涓嶉�氳繃闄勪欢	 */
 	background:#FF5722 url("../images/btn-edit.png") center no-repeat;	
 	background-size:75%;	
 }
-/*IE8 ���� 
-\0 IE8,IE9,IE10 ֧��
-\9\0 IE9,IE10 ֧��
+/*IE8 锟斤拷锟斤拷 
+\0 IE8,IE9,IE10 支锟斤拷
+\9\0 IE9,IE10 支锟斤拷
 */
 
 .layui-nav .layui-nav-item{

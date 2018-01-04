@@ -195,7 +195,7 @@
 								<a href="" class="layui-btn layui-btn-xs checkBtn none">
 									<i class="layui-icon"></i>查看附件
 								</a>
-								<div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr">
+								<div type="button"class="layui-btn layui-btn-normal layui-btn-xs pr oh">
 									<i class="layui-icon"></i>上传附件
 									<input type="file" name="file" class="upload-file pa" id="File{{item.filetypeIndex}}" onchange=ajaxFileUpload("File{{item.filetypeIndex}}",'')>
 								</div>

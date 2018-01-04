@@ -60,7 +60,7 @@ request.setAttribute("error", error);
 				</div>
 				<div class="layui-form-item m0">
 					<label  class="layui-form-label layui-text">
-						<a href="javascript:;" id="forgetPwd" class="fl layui-orange">找回密码</a>					
+						<a href="javascript:;" id="forgetPwd" class="fl layui-blue">找回密码</a>					
 					</label>
 				</div>
 	 		</form>

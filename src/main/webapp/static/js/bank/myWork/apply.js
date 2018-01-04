@@ -99,6 +99,11 @@ layui
 																					+ '/bank/myWork/approval?id='
 																					+ formId
 																					+ '&&type=人工录入';
+																			alert(ctx
+																					+ '/bank/myWork/approval?id='
+																					+ formId
+																					+ '&&type=人工录入');
+																			
 																		}, 1500);
 
 															} else {
