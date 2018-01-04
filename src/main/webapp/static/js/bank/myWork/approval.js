@@ -41,7 +41,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 	}
 	var Id = GetQueryString("id");
 	Type=GetQueryString("type");
-	alert('id:'+Id+'type:'+Type);
+	//alert('id:'+Id+'type:'+Type);
 	var name="";
 	approval(Id);
 	btnShow(Id);
