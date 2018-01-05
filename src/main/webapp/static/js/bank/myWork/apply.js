@@ -97,7 +97,7 @@ layui
 																		function() {
 																			_this.location.href = ctx
 																					+ '/bank/myWork/approval?id='
-																					+ formId;																			
+																					+ formId+'&type=shenpizhong';																			
 																		}, 1500);
 
 															} else {

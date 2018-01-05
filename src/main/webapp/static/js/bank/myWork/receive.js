@@ -244,7 +244,8 @@ layui.use(['table','upload','laytpl','form'], function () {
 					setTimeout(function(){
 						table.render(optionReceive);
 						$("#applyInfo").addClass("none");
-				    	$("#receiveTable").removeClass("none");    	
+				    	$("#receiveTable").removeClass("none");   
+				    	layer.closeAll();
 					},2000);
 					
 				}else{

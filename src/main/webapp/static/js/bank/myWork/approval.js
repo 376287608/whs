@@ -803,12 +803,12 @@ $("#correctBtn").click(function(e) {
 					$(_this).siblings(".passBtn").attr("disabled", false).removeClass("layui-btn-disabled");
 					if(type=="3"){
 						//审核通过
-						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-red").addClass(
+						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-red layui-bg-blue").addClass(
 						"layui-bg-green");	
 						
 					}else{
 						//审核不通过
-						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-green").addClass(
+						$(_this).parents("li").find(".layui-badge-dot").removeClass("layui-bg-green layui-bg-blue").addClass(
 						"layui-bg-red");	
 					}
 					
