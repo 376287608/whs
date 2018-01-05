@@ -51,13 +51,20 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
        Id=data.id; 
        businessId=data.businessId;
        bussinessType=data.statuBank;
+       if(bussinessType=='待审批'){
+    	   var bussinessTypes='daishenpi'
+       }else if(bussinessType=='审批中'){
+    	   var bussinessTypes='shenpizhong'
+       }else{
+    	  var  bussinessTypes=''
+       }
        layui.data('business', {
         	  key: 'businessId'
                	  ,value: businessId
                	});
        
       if(obj.event === 'newlayer'){  	 
-    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+bussinessType;
+    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+bussinessTypes;
       }
     });
     

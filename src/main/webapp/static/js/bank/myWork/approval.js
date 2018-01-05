@@ -45,7 +45,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 	var name="";
 	approval(Id);
 	btnShow(Id);
-	if(Type=="待审批"){
+	if(Type=="daishenpi"){
 		checkView(Id);
 	}
 	$("#test").click(function(){
@@ -105,7 +105,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 			view.innerHTML = html;
 		});
 		
-		if(Type=="待审批"){					
+		if(Type=="daishenpi"){					
 			$(".checkBtn").removeClass("none");			
 		}else if(Type==""){
 			$(".checkBtn").removeClass("none");	

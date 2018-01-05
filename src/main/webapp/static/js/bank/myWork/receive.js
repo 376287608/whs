@@ -334,7 +334,7 @@ layui.use(['table','upload','laytpl','form'], function () {
 			success : function(data) {
 				if (data.success = "true") {
 					successTip(data);
-					_this.location.href=ctx+'/bank/myWork/approval?id='+formId+'&&type=导入';	
+					_this.location.href=ctx+'/bank/myWork/approval?id='+formId;	
 				}else{
 					errorTip(data);	
 				}
@@ -360,7 +360,7 @@ layui.use(['table','upload','laytpl','form'], function () {
 		success : function(data) {
 			if(data.success=="true"){
 				successTip(data);					
-				_this.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type=待接收';					
+				_this.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type=daijieshou';					
 			}else{
 				errorTip(data);
 			}

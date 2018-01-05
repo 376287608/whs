@@ -24,26 +24,27 @@ layui
 					var typeId = "";// 业务类型ID
 					var title = "";
 					getBusinessId();
-									
-					if(type=='暂存'){
+					// 校验
+					formVerify();	
+					if(type=='zancun'){
 						approval(formId);
 						$("#backBtn").removeClass("none");
 					}
-					// 校验
-					formVerify();
+					
 					var agent=$(window.parent.document).find("#registerName").text();
 					$("#agent").text(agent);
 					$(".site-title a").text(title + '申请单');
 				
 					/** *申请表基本信息** */		
 					// 保存申请表
-					form.on('submit(applyFormSave)', function(data) {
+					form.on('submit(applyFormSave)', function(data) {				
 						specialJianGuanSubmitForm(typeId, 'save', '#saveBtn', 'index');
 						return false;
 					});
 
 					// 启动流程
 					form.on('submit(applyFormStartup)', function(data) {
+						
 						specialJianGuanSubmitForm(typeId, 'submit', '#submitBtn');
 						return false;
 					});

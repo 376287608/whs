@@ -54,7 +54,7 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
                	});
        
       if(obj.event === 'newlayer'){  	 
-    	  window.location.href=ctx+'/bank/specialJianGuan/specialApproval?id='+Id+'&&type=待审批';
+    	  window.location.href=ctx+'/bank/specialJianGuan/specialApproval?id='+Id+'&&type=daishenpi';
       }
     });
     

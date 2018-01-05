@@ -97,13 +97,7 @@ layui
 																		function() {
 																			_this.location.href = ctx
 																					+ '/bank/myWork/approval?id='
-																					+ formId
-																					+ '&&type=人工录入';
-																			alert(ctx
-																					+ '/bank/myWork/approval?id='
-																					+ formId
-																					+ '&&type=人工录入');
-																			
+																					+ formId;																			
 																		}, 1500);
 
 															} else {

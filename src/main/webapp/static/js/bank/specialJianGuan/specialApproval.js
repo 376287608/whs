@@ -27,7 +27,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 	var name="";
 	approval(Id);
 	btnShow(Id);
-	if(Type=="待审批"){
+	if(Type=="daishenpi"){
 		checkView(Id);
 	}
 	function approval(Id) {

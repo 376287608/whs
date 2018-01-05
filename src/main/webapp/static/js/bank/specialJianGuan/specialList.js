@@ -52,7 +52,7 @@ layui.use(['table','laytpl','jquery','laypage','layer'], function () {
        	console.log(layui.data('business'))       	  
        	$("#formId").val(Id);
       if(obj.event === 'newlayer'){
-    	  window.location.href=ctx+'/bank/specialJianGuan/specialApply?id='+Id+'&&type=暂存';
+    	  window.location.href=ctx+'/bank/specialJianGuan/specialApply?id='+Id+'&&type=zancun';
       }
       
     });

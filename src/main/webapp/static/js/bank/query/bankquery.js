@@ -69,10 +69,14 @@ layui.use(['table','laydate','jquery','laytpl','laypage'], function () {
 	    table.on('tool(dataGrid)', function(obj){
 	      var data = obj.data;
 	       Id=data.id;
-	      var status=data.statuCompany;
+	       if(data.statuCompany=='待审批'){
+	    	   var status='daishenpi'
+	       }else{
+	    	   var status=''
+	       }
 	      var typeId=data.businessId;
 	      if(obj.event === 'newlayer'){
-	    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+statuCompany+'';
+	    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+status+'';
 	      }
 	    });
 	    
