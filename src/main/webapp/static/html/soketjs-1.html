@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Title</title>
+
+<script src="sockjs.js"></script>
+
+</head>
+<body>
+<textarea id="message" style="width: 350px">测试消息!</textarea>
+<h1 id='id1'>hello,</h1>
+      <button id="connect" onclick="connect();">连接服务器</button>
+      <button id="disconnect"  onclick="disconnect();">断开连接</button>
+      <button id="echo" onclick="echo();" >发送消息</button>
+<script>
+var sock;
+function connect() {
+	sock = new SockJS('http://127.0.0.1:8080/whs/sockjs/websocket');
+	sock.onopen = function() {
+	    console.log('open');
+	//    sock.send('test');
+	};
+
+	sock.onmessage = function(e) {
+	    console.log('message', e.data);
+	    document.getElementById('id1').innerHTML=e.data;
+	  //  sock.close();
+	};
+
+	sock.onclose = function() {
+	    console.log('close');
+	};
+}
+
+function disconnect() {
+  if (sock != null) {
+    sock.close();
+    sock = null;
+  }
+}
+
+function echo() {
+  if (sock != null) {
+    var message = document.getElementById('message').value;
+    console.log('input message:' + message);
+    sock.send(message);
+  } else {
+    alert('没有建立连接，请连接服务！');
+  }
+}
+
+</script>
+</body>
+</html>
