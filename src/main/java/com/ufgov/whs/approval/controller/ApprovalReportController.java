@@ -190,6 +190,9 @@ public class ApprovalReportController{
 			item.put("address", approvalReport.getContactAddress());
 			item.put("businessName", approvalReport.getBusinessName());
 			item.put("applyTime", approvalReport.getApplyTime());
+			item.put("statuCompany", approvalReport.getStatuCompany());
+			item.put("statuBank", approvalReport.getStatuBank());
+			item.put("reportState", approvalReport.getReportState());
 			//通知获取方式
 			item.put("noticeGet", approvalReport.getNoticeGet());
 			item.put("applyName", approvalReport.getApplyName());
