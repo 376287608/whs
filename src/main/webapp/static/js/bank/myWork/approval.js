@@ -10,6 +10,8 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 	var businessId = layui.data('business').businessId; 
 	var upload = layui.upload;
 	var laydate = layui.laydate;
+	var Id = GetQueryString("id");
+	var name="";
 	//上一个地址
 	var historyUrl=document.referrer;
 	//当前页面地址
@@ -39,25 +41,18 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 			completeTime : $("#completeTime").val(),
 			operationOpinion : $("#operationOpinion").val(),
 	}
-	var Id = GetQueryString("id");
-	Type=GetQueryString("type");
-	//alert('id:'+Id+'type:'+Type);
-	var name="";
+
 	approval(Id);
 	btnShow(Id);
-	if(Type=="daishenpi"){
-		checkView(Id);
-	}
-	$("#test").click(function(){
-		//
-		//刷新页面
-		layer.load(1);	
-		setTimeout(function(){
-//			location.replace("http://localhost:8080/whs/bank/myWork/approval?id=f892791bfb134bfaa68fb5ecdcee350c&&type=%E5%BE%85%E5%AE%A1%E6%89%B9");	
-			location.replace(currentUrl);	
-		},1500);
-	})
-		
+
+//	$("#test").click(function(){
+//		//
+//		//刷新页面
+//		layer.load(1);	
+//		setTimeout(function(){
+//			location.replace(currentUrl);	
+//		},1500);
+//	})
 	
 	function approval(Id) {
 		$.ajax({
@@ -72,6 +67,8 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 				if(data.success=="true"){
 				$("#lastApprover").text(format(data.topUser.approvalRoleName));
 				$("#businessDocumentCode").text(format(data.businessDocumentCode));
+				Types=data.item.statuBank;
+				console.log(Types)
 				$.each(data.item, function(index, ele) {
 					if (index == "noticeGet") {
 						var ele = ele == 1 ? "自取" : "邮寄";
@@ -84,13 +81,11 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 					}else {
 						$('.layui-form label[id=' + index + ']').text(format(ele));
 					}
-				});
-				if(data.currentSug != null){
-					$("#operationOpinion").text(data.currentSug);
-				}
-				successAttachmentListBank(data.attachments);	
-				}else{
-					errorTip(data);
+				});			
+					if(data.currentSug != null){
+						$("#operationOpinion").text(data.currentSug);					
+					}	
+					successAttachmentListBank(data.attachments);	
 				}
 			},
 			error : function(data) {
@@ -99,22 +94,17 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 		});
 	}
 	function successAttachmentListBank(data) {
-		var getTpl = attachmentListTpl.innerHTML, view = document
-				.getElementById('attachmentListCon');
+		var getTpl = attachmentListTpl.innerHTML, view = document.getElementById('attachmentListCon');
 		laytpl(getTpl).render(data, function(html) {
 			view.innerHTML = html;
-		});
-		
-		if(Type=="daishenpi"){					
-			$(".checkBtn").removeClass("none");			
-		}else if(Type==""){
+			if(Types=="待审批"){										
+				checkView(Id);
+			}else if(Types=="已补正"||Types=="待受理"){	
+				$(".addAnnotationBtn").removeClass("none");
+				$(".passBtn").removeClass("none");					
+			}
 			$(".checkBtn").removeClass("none");	
-		}else{	
-			$(".addAnnotationBtn").removeClass("none");
-			$(".passBtn").removeClass("none");
-			$(".checkBtn").removeClass("none");	
-		}
-				
+		});				
 	}
 	// 内部撤回
 	$("#cancelBtn").click(
@@ -122,9 +112,10 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 				var _this = $(this);
 				layer.confirm('您确定要撤回该业务吗？', {
 					btn : [ '确定', '取消' ]
-				 	,offset: '200px'
+				 	//,offset: 'auto'
+				 	,offset: 'auto'
 				 	,closeBtn: 0
-				// 按钮
+				// 按钮q2q2
 				}, function() {
 					$.ajax({
 						type : "POST",
@@ -194,7 +185,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 						  content: htmls
 						  ,btn: ['确认', '取消']
 						  ,area: ['500px','300px']
-						  ,offset: '100px'
+						  ,offset: 'auto'
 						  ,closeBtn: 0
 						  ,yes: function(index, layero){   
 							 var name= $("#nextApproverSelect").find("option:selected").data("loginname");
@@ -281,7 +272,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 						  content: htmls
 						  ,btn: ['确认', '取消']
 						  ,area: ['500px','300px']
-						  ,offset: '100px'
+						  ,offset:'auto'
 						  ,closeBtn: 0
 						  ,yes: function(index, layero){   
 							 var name= $("#nextApproverSelect").find("option:selected").data("loginname");
@@ -364,7 +355,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 						  content: htmls
 						  ,btn: ['确认', '取消']
 						  ,area: ['500px','300px']
-						  ,offset: '100px'
+						  ,offset: 'auto'
 						  ,closeBtn: 0
 						  ,yes: function(index, layero){   
 							 var processId=$("#nextApproverSelect").val();
@@ -431,9 +422,6 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 							setTimeout(function(){
 								freshen(historyUrl);
 							},1500);
-						/*	if(Type=="导入"||Type=="人工录入"){
-								freshenlocation();
-							}*/
 							e.stopPropagation()
 						}else{
 							errorTip(data);
@@ -485,7 +473,7 @@ layui.use([ 'upload', 'laydate', 'layer', 'jquery', 'laytpl','form'], function()
 						  content: htmls
 						  ,btn: ['确认', '取消']
 						  ,area: ['500px','300px']
-					 	  ,offset: '100px'
+					 	  ,offset: 'auto'
 						  ,yes: function(index, layero){   
 							 var name= $("#nextApproverSelect").find("option:selected").data("loginname");
 							 var stepId=$("#nextApproverSelect").find("option:selected").data("step");
@@ -639,7 +627,7 @@ $("#correctBtn").click(function(e) {
 	$("#passBtn").click(function(e) {
 		var _this = $(this);
 		//prompt层
-		layer.prompt({title: '请输入业务凭证编码，并确认',maxlength:18, formType: 1, value: '',offset: '200px'}, function(pass, index){
+		layer.prompt({title: '请输入业务凭证编码，并确认',maxlength:18, formType: 1, value: '',offset: 'auto'}, function(pass, index){
 		  layer.close(index);
 			$.ajax({
 				type : "POST",
@@ -940,8 +928,8 @@ function btnShow(){
 		success : function(data) {
 			if (data.success == "true") {
 				$.each(data.rows,function(index,ele){
-					console.log(ele.name);
-					console.log(ele.remarks);
+//					console.log(ele.name);
+//					console.log(ele.remarks);
 					var name=ele.name;
 					var id=ele.remarks;
 					$("#"+id).removeClass("none").text(name);					

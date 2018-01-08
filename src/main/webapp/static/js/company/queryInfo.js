@@ -15,6 +15,7 @@ layui.use([ 'form', 'upload', 'jquery', 'layer', 'laytpl','laypage'], function()
 	laypage=layui.laypage;
 	var form = layui.form, layer = layui.layer;
 	var status = GetQueryString("status");
+console.log(status);
 	var Id = GetQueryString("id");
 	var typeId = GetQueryString("typeId");
 	var where=GetQueryString("form");
@@ -108,8 +109,13 @@ layui.use([ 'form', 'upload', 'jquery', 'layer', 'laytpl','laypage'], function()
 			// 按钮显示撤销
 			$("#recallBtn").removeClass("none");
 			break;
+		case '已办结':
+			// 按钮显示撤销
+			$("#recallBtn").removeClass("none");
+			break;
 
 		default:
+			$("#recallBtn").removeClass("none");
 			// 待终止，已终止，被退回
 			break;
 		}

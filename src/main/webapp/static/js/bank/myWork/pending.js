@@ -64,7 +64,7 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
                	});
        
       if(obj.event === 'newlayer'){  	 
-    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type='+bussinessTypes;
+    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id;
       }
     });
     

@@ -79,7 +79,7 @@
 			<a href="getLawsInfo?type=法律法规&&id={{item.id}}" class='blue'>{{item.lawName}}</a>
 		</li>
 	{{#}); }}
-<li><a href="http://baidu.com" class="layui-blue" target="_blank">更多>></a></li>
+<li><a href="http://www.safe.gov.cn/wps/portal/sy/zcfg" class="layui-blue" target="_blank">更多>></a></li>
 	{{#  if(d.length === 0){ }}
     	<li class="tc m0"><img src='${ctx}/static/images/noFound.png' style='width:75px'><p class="f14 gray">暂无数据</p></li>
 	{{#  } }} 

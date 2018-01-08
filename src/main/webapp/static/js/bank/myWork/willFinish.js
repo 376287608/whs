@@ -45,7 +45,7 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
       var data = obj.data;
        Id=data.id;   
       if(obj.event === 'newlayer'){  	 
-    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id+'';
+    	  window.location.href=ctx+'/bank/myWork/approval?id='+Id;
       }
     });
   
