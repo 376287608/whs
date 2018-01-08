@@ -361,7 +361,7 @@ layui.use(['table','upload','laytpl','form'], function () {
 		success : function(data) {
 			if(data.success=="true"){
 				successTip(data);					
-				_this.location.href=ctx+'/bank/myWork/approval?id='+Id+'&&type=daijieshou';					
+				_this.location.href=ctx+'/bank/myWork/approval?id='+Id;					
 			}else{
 				errorTip(data);
 			}

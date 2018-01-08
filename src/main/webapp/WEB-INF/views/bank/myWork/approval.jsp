@@ -193,7 +193,7 @@
 									</a>
 								{{# } }}
 							
-								<a href='${ctx}/attachment/down/{{item.docId}}/1' class="layui-btn layui-btn-xs checkBtn none">
+								<a href='${ctx}/attachment/down/{{item.docId}}/1' class="layui-btn layui-btn-xs checkBtn">
 									<i class="layui-icon"></i>查看附件
 								</a>
 								<button type="button"
