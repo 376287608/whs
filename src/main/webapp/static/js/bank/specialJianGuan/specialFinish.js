@@ -11,7 +11,7 @@ layui.use(['table', 'laytpl', 'jquery','laypage','layer'], function () {
         layer = layui.layer;
     var option = {
         	id: 'dataGrid',
-    		url: ctx+"/approvalreport/ajaxToTransactList",
+    		url: ctx+"/specialJianGuan/ajaxToTransactList",
         	method: 'post',
         	elem: '#newTable', 
         	where: {status:'2'}, 
