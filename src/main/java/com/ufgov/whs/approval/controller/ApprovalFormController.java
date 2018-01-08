@@ -300,6 +300,8 @@ public class ApprovalFormController{
 			baseInfo.put("businessName", approvalForm.getBusinessName());
 			baseInfo.put("applyTime", approvalForm.getApplyTime());
 			baseInfo.put("submitTime", approvalForm.getSubmitTime());
+			item.put("statuCompany", approvalForm.getStatuCompany());
+			item.put("statuBank", approvalForm.getStatuBank());
 			//通知获取方式
 			baseInfo.put("noticeGet", approvalForm.getNoticeGet());
 			//附件信息
